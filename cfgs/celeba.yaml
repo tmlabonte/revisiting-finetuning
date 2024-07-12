@@ -1,0 +1,14 @@
+accelerator: gpu
+batch_size: 32
+check_val_every_n_epochs: 2
+ckpt_every_n_epochs: 2
+datamodule: celeba
+devices: 1
+lr: 1e-5
+lr_scheduler: cosine
+max_epochs: 20
+metrics: [loss, acc, acc_by_group]
+model: convnextv2
+num_sanity_val_steps: 0
+optimizer: adamw
+wandb: True

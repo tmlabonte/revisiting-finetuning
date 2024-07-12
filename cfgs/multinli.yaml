@@ -1,0 +1,14 @@
+accelerator: gpu
+batch_size: 32
+check_val_every_n_epochs: 2
+ckpt_every_n_epochs: 2
+datamodule: multinli
+devices: 1
+lr: 1e-5
+lr_scheduler: linear
+max_epochs: 20
+metrics: [loss, acc, acc_by_group]
+model: bert
+num_sanity_val_steps: 0
+optimizer: adamw
+wandb: True
