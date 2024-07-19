@@ -24,13 +24,25 @@ from milkshake.main import main, load_weights
 
 def reset_fc_hook(model):
     """Resets model classifier parameters."""
-
+    
+    try:
+        for layer in model.model.fc:
+            if hasattr(layer, "reset_parameters"):
+                layer.reset_parameters()
+    except:
+        try:
+            model.model.fc.reset_parameters()
+        except:
+            pass
     try:
         for layer in model.model.classifier:
             if hasattr(layer, "reset_parameters"):
                 layer.reset_parameters()
     except:
-        model.model.classifier.reset_parameters()
+        try:
+            model.model.classifier.reset_parameters()
+        except:
+            pass
 
 def train_fc_only(model):
     """Freezes model parameters except for last layer."""
@@ -38,10 +50,10 @@ def train_fc_only(model):
         p.requires_grad = False
 
     try:
-        for p in model.model.classifier.parameters():
+        for p in model.model.fc.parameters():
             p.requires_grad = True
     except:
-        for p in model.model.fc.parameters():
+        for p in model.model.classifier.parameters():
             p.requires_grad = True
 
 def set_llr_args(args, train_type):
@@ -56,9 +68,7 @@ def set_llr_args(args, train_type):
     new_args.lr_scheduler = "step"
     new_args.lr_steps = []
     new_args.optimizer = "sgd"
-    new_args.train_fc_only = True
-    new_args.wandb = False
-
+    
     if train_type == "llr":
         new_args.train_type = "llr"
         new_args.retrain_type = "group-unbalanced retraining"
@@ -198,7 +208,7 @@ def experiment(args, model_class, datamodule_class):
         d += str(args.mixture_ratio)
     e = args.max_epochs
 
-    wandb_version = results[s][v][c]["erm"][e]["version"]
+    wandb_version = results[s][v][c]["erm"][d][e]["version"]
     if not wandb_version:
         raise ValueError(f"Model version {wandb_version} not found.")
 
