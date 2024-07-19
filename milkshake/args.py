@@ -70,7 +70,7 @@ def add_input_args(parser):
                help="The version of ConvNeXtV2 model to load.")
     parser.add("--data_augmentation", default=True, type=lambda x: bool(strtobool(x)),
                help="Whether to use data augmentation as specified in the DataModule.")
-    parser.add("--data_dir", default="/data",
+    parser.add("--data_dir", default="data",
                help="The name of the directory where data will be saved.")
     parser.add("--datamodule", choices=datamodule_names,
                help="The name of the DataModule to utilize.")
