@@ -208,7 +208,7 @@ def experiment(args, model_class, datamodule_class):
         d += str(args.mixture_ratio)
     e = args.max_epochs
 
-    wandb_version = results[s][v][c]["erm"][d][e]["version"]
+    wandb_version = results[s][v][c]["erm"][e]["version"]
     if not wandb_version:
         raise ValueError(f"Model version {wandb_version} not found.")
 
