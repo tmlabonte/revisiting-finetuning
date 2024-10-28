@@ -1,5 +1,5 @@
-# Revisiting Finetuning under Spurious Correlations
-### Official codebase for the paper: (TODO ARXIV LINK)
+# The Group Robustness is in the Details: Revisiting Finetuning under Spurious Correlations
+### Official codebase for the NeurIPS 2024 paper: [https://arxiv.org/abs/2407.13957](https://arxiv.org/abs/2407.13957)
 ### Installation
 ```
 conda update -n base -c defaults conda
@@ -24,10 +24,10 @@ After models are finetuned, run eigenvalue computations with `exps/postprocess.p
 ### Citation and License
 This codebase uses [Milkshake](https://github.com/tmlabonte/milkshake) as a template and inherits its MIT License. Please consider using the following citation:
 ```
-@article{labonte24revisiting,
+@inproceedings{labonte24revisiting,
   author={Tyler LaBonte and John C. Hill and Xinchen Zhang and Vidya Muthukumar and Abhishek Kumar},
   title={The Group Robustness is in the Details: Revisiting Finetuning under Spurious Correlations},
-  journal={ArXiv preprint (TODO: ARXIV NUMBER)},
+  booktitle={Conference on Neural Information Processing Systems (NeurIPS)},
   year={2024},
 }
 ```
